@@ -9,7 +9,7 @@ module ExUA
     no_follow true
     # Returns the redirect target for a given uri
     def self.get_redirect(uri)
-      get Addressable::URI.parse(uri).normalize.to_s
+      get Addressable::URI.parse(URI.encode(uri)).normalize.to_s
     rescue HTTParty::RedirectionTooDeep => e
       e.response["location"]
     end
